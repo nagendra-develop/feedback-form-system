@@ -17,3 +17,6 @@ build/
 
 #logs file
 backend/logs.txt
+
+#package
+package-lock.json
