@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feedback Form</title>
+  <link rel="stylesheet" href="style.css" />
+</head>  
+<body>
+  <div class="container">
+    <h2>💬 Feedback Form</h2>
+    <form id="feedbackform">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </div>
+
+  <!-- ✅ Popup Message Div -->
+  <div id="popupMessage" class="hidden"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
