@@ -14,3 +14,6 @@ Thumbs.db
 # Build files (optional)
 dist/
 build/
+
+#logs file
+backend/logs.txt

@@ -5,9 +5,10 @@ function showPopup(message, isError = false) {
   popup.classList.toggle("error", isError);
 
   setTimeout(() => {
-    popup.classList.add("hidden");
-    popup.classList.remove("error");
-  }, 3000);
+  popup.classList.add("hidden");
+  popup.classList.remove("error");
+}, 60 * 60 * 1000); // Hides after 60 minutes (60 * 60 * 1000 ms)
+
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -24,22 +25,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/api/feedback", {
+      const data = { name, email, message }; // ✅ only define once here
+      const res = await fetch("http://127.0.0.1:3000/api/feedback", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message })
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
       });
 
-      const data = await res.json();
-      
-      if (res.ok) {
-  showPopup("Your feedback has been successfully recorded!");
-  document.getElementById("feedbackform").reset();
-} else {
-  showPopup(data.message || "Something went wrong. Try again!", true);
-}
+      const result = await res.json();
 
-}catch (err) {
+      if (res.ok) {
+        showPopup("Your feedback has been successfully recorded!");
+        document.getElementById("feedbackform").reset();
+      } else {
+        showPopup(result.message || "Something went wrong. Try again!", true);
+      }
+
+    } catch (err) {
       showPopup("Something went wrong. Try again!", true);
       console.error(err);
     }
